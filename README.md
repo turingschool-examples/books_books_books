@@ -1,5 +1,44 @@
 # Denver Public Library (DPL)
 
+## Setup Instructions (for Instructors)
+
+- Clone this repo
+- remove the turingschool remote
+- remove the git history and initialize a new git repo
+- create a branch called spec
+- commit the Gemfile, spec directory, and, optionally, the remainder of the README
+- Create a new repo on turingschool-examples called `denver_public_library_<cohort number>`
+- Add that remote
+- Push up both branches
+- Spec Harness Instructions
+- You do not need the original repo cloned down locally for this process. This script will clone student repos down and will pull in the spec branch of the repo that they forked from. For this reason, it's important to ensure the spec branch was created properly and has the spec harness at the time the students fork the repo you created for this specific challenge.
+
+In order to run the spec harness, first create a new directory with a students.txt file
+
+In students.txt, put a list of your students Github handles. For example:
+
+```
+aziobrow
+dionew1
+memcmahon
+s-espinosa
+```
+From the root of the directory you created with the students.txt file at the root level, run the following script in your terminal, replacing <repository_name> with the name of the challenge repo:
+
+```
+for i in `cat students.txt`; do
+  git clone git@github.com:$i/<repository_name> $i
+  cd $i
+  git pull origin spec # this will cause a merge commit message
+  rspec
+  echo
+  echo
+  read -p 'Press Enter to continue'
+  cd ..
+done
+```
+For each student, you will need to create or :q out of a merge commit message!
+
 ## Preparation
 
 * Fork this Repository
@@ -17,7 +56,7 @@ Use TDD to create a `Book` class that responds to the following interaction patt
 pry(main)> require './lib/book'
 #=> true
 
-pry(main)> book = Book.new({author_first_name: "Harper", author_last_name: "Lee", title: "To Kill a Mockingbird", publication_date: "July 11, 1960"})    
+pry(main)> book = Book.new({author_first_name: "Harper", author_last_name: "Lee", title: "To Kill a Mockingbird", publication_date: "July 11, 1960"})
 #=> #<Book:0x00007fcc021fad08...>
 
 pry(main)> book.title
@@ -43,7 +82,7 @@ pry(main)> require './lib/book'
 pry(main)> require './lib/author'
 #=> true
 
-pry(main)> charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})    
+pry(main)> charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})
 #=> #<Author:0x00007fb898081850...>
 
 pry(main)> charlotte_bronte.name
@@ -83,7 +122,7 @@ pry(main)> require './lib/library'
 pry(main)> require './lib/author'
 #=> true
 
-pry(main)> dpl = Library.new("Denver Public Library")    
+pry(main)> dpl = Library.new("Denver Public Library")
 #=> #<Library:0x00007fbeea3653c0...>
 
 pry(main)> dpl.name
@@ -98,24 +137,24 @@ pry(main)> dpl.authors
 pry(main)> charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})
 #=> #<Author:0x00007fbeea2d78b8...>
 
-pry(main)> jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")    
+pry(main)> jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
 #=> #<Book:0x00007fbeeb3beca8...>
 
-pry(main)> professor = charlotte_bronte.write("The Professor", "1857")    
+pry(main)> professor = charlotte_bronte.write("The Professor", "1857")
 #=> #<Book:0x00007fbeea8efd90...>
 
-pry(main)> villette = charlotte_bronte.write("Villette", "1853")    
+pry(main)> villette = charlotte_bronte.write("Villette", "1853")
 #=> #<Book:0x00007fbeea24fbe8...>
 
-pry(main)> harper_lee = Author.new({first_name: "Harper", last_name: "Lee"})    
+pry(main)> harper_lee = Author.new({first_name: "Harper", last_name: "Lee"})
 #=> #<Author:0x00007fbeea112730...>
 
-pry(main)> mockingbird = harper_lee.write("To Kill a Mockingbird", "July 11, 1960")    
+pry(main)> mockingbird = harper_lee.write("To Kill a Mockingbird", "July 11, 1960")
 #=> #<Book:0x00007fbeeb1089f0...>
 
 pry(main)> dpl.add_author(charlotte_bronte)
 
-pry(main)> dpl.add_author(harper_lee)    
+pry(main)> dpl.add_author(harper_lee)
 
 pry(main)> dpl.authors
 => [#<Author:0x00007fbeea2d78b8...>, #<Author:0x00007fbeea112730...>]
@@ -149,22 +188,22 @@ pry(main)> require './lib/library'
 pry(main)> require './lib/author'
 #=> true
 
-pry(main)> dpl = Library.new("Denver Public Library")    
+pry(main)> dpl = Library.new("Denver Public Library")
 #=> #<Library:0x00007f8c021685b0...>
 
-pry(main)> charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})    
+pry(main)> charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})
 #=> #<Author:0x00007f8c01429a98...>
 
-pry(main)> jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")    
+pry(main)> jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
 #=> #<Book:0x00007f8c01433138...>
 
-pry(main)> villette = charlotte_bronte.write("Villette", "1853")    
+pry(main)> villette = charlotte_bronte.write("Villette", "1853")
 #=> #<Book:0x00007f8c021d84c8...>
 
-pry(main)> harper_lee = Author.new({first_name: "Harper", last_name: "Lee"})    
+pry(main)> harper_lee = Author.new({first_name: "Harper", last_name: "Lee"})
 #=> #<Author:0x00007f8c01442520...>
 
-pry(main)> mockingbird = harper_lee.write("To Kill a Mockingbird", "July 11, 1960")    
+pry(main)> mockingbird = harper_lee.write("To Kill a Mockingbird", "July 11, 1960")
 #=> #<Book:0x00007f8c019506c0...>
 
 # This book cannot be checked out because it doesn't exist in the library
@@ -177,7 +216,7 @@ pry(main)> dpl.checkout(jane_eyre)
 
 pry(main)> dpl.add_author(charlotte_bronte)
 
-pry(main)> dpl.add_author(harper_lee)    
+pry(main)> dpl.add_author(harper_lee)
 
 pry(main)> dpl.checkout(jane_eyre)
 #=> true
@@ -198,7 +237,7 @@ pry(main)> dpl.checked_out_books
 pry(main)> dpl.checkout(jane_eyre)
 #=> true
 
-pry(main)> dpl.checkout(villette)    
+pry(main)> dpl.checkout(villette)
 #=> true
 
 pry(main)> dpl.checked_out_books
@@ -207,14 +246,14 @@ pry(main)> dpl.checked_out_books
 pry(main)> dpl.checkout(mockingbird)
 #=> true
 
-pry(main)> dpl.return(mockingbird)    
+pry(main)> dpl.return(mockingbird)
 
-pry(main)> dpl.checkout(mockingbird)    
+pry(main)> dpl.checkout(mockingbird)
 #=> true
 
-pry(main)> dpl.return(mockingbird)    
+pry(main)> dpl.return(mockingbird)
 
-pry(main)> dpl.checkout(mockingbird)    
+pry(main)> dpl.checkout(mockingbird)
 #=> true
 
 pry(main)> dpl.most_popular_book
