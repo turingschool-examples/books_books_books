@@ -1,12 +1,14 @@
 class Library
   attr_reader :name,
               :books,
-              :authors
+              :authors,
+              :checked_out_books
 
   def initialize(name)
     @name = name
     @books = []
     @authors = []
+    @checked_out_books = []
   end
 
   def add_author(author)
@@ -41,7 +43,7 @@ class Library
 
   def checkout(book_to_checkout)
     available = @books.find do |book|
-      book == book_to_checkout
+      @checked_out_books << book_to_checkout if book == book_to_checkout
     end
     available != nil
   end
