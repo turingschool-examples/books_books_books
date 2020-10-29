@@ -14,4 +14,25 @@ class Library
       author.books
     end
   end
+
+  def publication_time_frame_for(author)
+    {
+      start: find_year_first_book_written(author),
+      end: find_year_last_book_written(author)
+    }
+  end
+
+  def find_year_first_book_written(author)
+    first_book = author.books.min_by do |book|
+      book.publication_year.to_i
+    end
+    first_book.publication_year
+  end
+
+  def find_year_last_book_written(author)
+    last_book = author.books.max_by do |book|
+      book.publication_year.to_i
+    end
+    last_book.publication_year
+  end
 end
