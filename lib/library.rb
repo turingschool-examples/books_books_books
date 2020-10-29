@@ -43,11 +43,10 @@ class Library
   end
 
   def count_checkout(book)
-    title_key = book.title.to_sym
-    if checkouts.key?(title_key)
-      checkouts[title_key] += 1
+    if checkouts.key?(book)
+      checkouts[book] += 1
     else
-      checkouts[title_key] = 1
+      checkouts[book] = 1
     end
   end
 
@@ -57,6 +56,9 @@ class Library
   end
 
   def most_popular_book
-
+    most_popular = checkouts.max_by do |book, count|
+      count
+    end
+    most_popular[0]
   end
 end
