@@ -34,6 +34,7 @@ class Library
     if checkoutable?(book)
       @popularity[book] += 1
       @checked_out_books.push(book)
+      true
     else
       false
     end
