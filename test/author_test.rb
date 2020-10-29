@@ -8,5 +8,6 @@ class AuthorTest < Minitest::Test
     charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})
 
     assert_instance_of Author, charlotte_bronte
+    assert_equal "Charlotte Bronte", charlotte_bronte.name
   end
 end
