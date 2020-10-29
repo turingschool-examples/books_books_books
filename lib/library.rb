@@ -14,4 +14,11 @@ class Library
       @books << book
     end
   end
+
+  def publication_time_frame_for(author)
+    {
+      start: author.earliest_year_published,
+      end: author.latest_year_published
+    }
+  end
 end
