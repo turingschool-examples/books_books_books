@@ -135,5 +135,14 @@ class LibraryTest < Minitest::Test
 
     assert_equal [], dpl.checked_out_books
     assert_equal true, dpl.checkout(jane_eyre)
+    assert_equal true, dpl.checkout(villette)
+    assert_equal [jane_eyre, villette], dpl.checked_out_books
+    assert_equal true,  dpl.checkout(mockingbird)
+    
+    dpl.return(mockingbird) 
+    assert_equal true, dpl.checkout(mockingbird)
+
+    dpl.return(mockingbird) 
+    assert_equal true, dpl.checkout(mockingbird)
   end
 end
