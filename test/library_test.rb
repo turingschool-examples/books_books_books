@@ -44,7 +44,6 @@ class LibraryTest < Minitest::Test
   end
 
   def test_publication_time_frame_for_author
-    skip
     dpl = Library.new("Denver Public Library")
     charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})
     jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
@@ -58,12 +57,16 @@ class LibraryTest < Minitest::Test
     charlotte_bronte.add_book(professor)
     charlotte_bronte.add_book(villette)
     harper_lee.add_book(mockingbird)
+    dpl.add_book(jane_eyre)
+    dpl.add_book(professor)
+    dpl.add_book(villette)
+    dpl.add_book(mockingbird)
 
     assert_equal [charlotte_bronte, harper_lee], dpl.authors
     assert_equal [jane_eyre, professor, villette, mockingbird], dpl.books
     expected = {:start=>"1847", :end=>"1857"}
     assert_equal expected, dpl.publication_time_frame_for(charlotte_bronte)
     expected = {:start=>"1960", :end=>"1960"}
-    assert_equal dpl.publication_time_frame_for(harper_lee)
+    assert_equal expected, dpl.publication_time_frame_for(harper_lee)
   end
 end
