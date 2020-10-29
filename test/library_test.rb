@@ -44,4 +44,14 @@ class Test < Minitest::Test
     assert_equal expected1, @library.publication_time_frame_for(@author1)
     assert_equal expected2, @library.publication_time_frame_for(@author2)
   end
+
+  def test_it_can_checkout_books
+    assert_equal false, @library.checkout(@book1) #doesn't exist
+    @library.add_author(@author1)
+    @library.add_author(@author2)
+    assert_equal true, @library.checkout(@book1) #exists and is free, true case
+    assert_equal false, @library.checkout(@book1) #has already been checked out
+    
+    assert_equal true, @library.checkout(@book2) #exists and is free, true case
+  end
 end
