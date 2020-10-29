@@ -38,8 +38,20 @@ class Library
     if @books.include?(book_obj) || @checked_out_books.include?(book_obj)
       false
     else
+      # require "pry"; binding.pry
+      book_obj.issue_count += 1
       @checked_out_books << book_obj
       true
+    end
+  end
+
+  def return(book_obj)
+    @checked_out_books.delete(book_obj)
+  end
+
+  def most_popular_book
+    @checked_out_books.max_by do |book|
+      book.issue_count
     end
   end
 

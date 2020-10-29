@@ -1,5 +1,6 @@
 class Book
   attr_reader :title, :author, :rented
+  attr_accessor :issue_count
 
   def initialize(data)
     @title = data[:title]
