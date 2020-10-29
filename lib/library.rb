@@ -43,7 +43,7 @@ class Library
 
   def checkout(book_to_checkout)
     available = @books.find do |book|
-      @checked_out_books << book_to_checkout if book == book_to_checkout
+      @checked_out_books << book && @books.delete(book) if book == book_to_checkout
     end
     available != nil
   end
