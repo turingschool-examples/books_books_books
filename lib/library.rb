@@ -41,7 +41,6 @@ class Library
   end
 
   def most_popular_book
-    require 'pry';binding.pry
     checkout_count = {}
     @checkout_log.each { |book| checkout_count[book] ? checkout_count[book] += 1 : checkout_count[book] = 1 }
     checkout_count.max_by { |book, count| count}[0]
