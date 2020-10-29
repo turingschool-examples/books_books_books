@@ -36,11 +36,11 @@ class Library
       false
     else
       @checked_out_books << book
-      times_checked_out(book)
+      times_checked_out_increment(book)
     end
   end
 
-  def times_checked_out(book)
+  def times_checked_out_increment(book)
     if @times_checked_out[book]
       @times_checked_out[book] += 1
     else
@@ -53,7 +53,6 @@ class Library
   end
 
   def most_popular_book
-    require 'pry'; binding.pry
     @times_checked_out.max_by do |book, amount_checked_out|
       amount_checked_out
     end[0]

@@ -120,6 +120,6 @@ class LibraryTest < Minitest::Test
     dpl.return(mockingbird)
     dpl.checkout(mockingbird)
 
-    assert_equal 2, dpl.times_checked_out(jane_eyre)
+    assert_equal 3, dpl.times_checked_out_increment(jane_eyre)
   end
 end
