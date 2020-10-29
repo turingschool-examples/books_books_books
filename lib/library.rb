@@ -27,13 +27,13 @@ class Library
   end
 
   def checkoutable?(book)
-    @books.include?(book) && !@checked_out_books.include?(book)
+    @books.include?(book) && !checked_out_books.include?(book)
   end
 
   def checkout(book)
     if checkoutable?(book)
       @popularity[book] += 1
-      @checked_out_books.push(book)
+      checked_out_books.push(book)
       true
     else
       false
@@ -47,6 +47,6 @@ class Library
   end
 
   def return(book)
-    @checked_out_books.delete(book)
+    checked_out_books.delete(book)
   end
 end
