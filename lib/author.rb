@@ -16,8 +16,7 @@ class Author
   end
 
   def write(title, publication_date)
-    require 'pry';binding.pry
-    @books << Book.new(params = {})
+    @books << Book.new({author_first_name: self.first_name, author_last_name: self.last_name, title: name, publication_date: publication_date})
   end
 
 
