@@ -47,4 +47,9 @@ class Library
     end
     available != nil
   end
+
+  def return(book_to_return)
+    @checked_out_books.delete(book_to_return)
+    @books << book_to_return
+  end
 end
