@@ -36,4 +36,21 @@ class Library
     end
     last_book.publication_year
   end
+
+  def checkout(book)
+    if book_exists(book) && book_is_free(book)
+      checked_out_books << book
+      true
+    else
+      false
+    end
+  end
+
+  def book_exists(book)
+    books.include?(book)
+  end
+
+  def book_is_free(book)
+    !checked_out_books.include?(book)
+  end
 end
