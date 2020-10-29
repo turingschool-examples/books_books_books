@@ -1,9 +1,15 @@
 class Book
-  attr_reader :title,
-              :author
+  attr_reader :title
+
 
   def initialize(data)
     @title = data[:title]
-    @author = data[:author]
+    @author_first_name = data[:author_first_name]
+    @author_last_name = data[:author_last_name]
+  end
+
+  def author
+    "#{@author_first_name} #{@author_last_name}"
+# require "pry"; binding.pry
   end
 end
