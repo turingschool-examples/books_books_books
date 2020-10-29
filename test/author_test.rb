@@ -18,5 +18,9 @@ class AuthorTest < Minitest::Test
     assert_equal "Charlotte", @charlotte_bronte.first_name
     assert_equal "Bronte", @charlotte_bronte.last_name
     assert_equal [], @charlotte_bronte.books
+  end
+
+  def test_name_combines_both_first_and_last
+    assert_equal "Charlotte Bronte", @charlotte_bronte.name
   end 
 end
