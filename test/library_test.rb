@@ -58,5 +58,9 @@ class LibraryTest < Minitest::Test
     @dpl.checkout(@jane_eyre)
     @dpl.return(@jane_eyre)
     assert_equal [], @dpl.checked_out_books
+    @dpl.checkout(@jane_eyre)
+    @dpl.checkout(@villette)
+    assert_equal [@jane_eyre, @villette], @dpl.checked_out_books
   end
+
 end
