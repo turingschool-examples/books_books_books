@@ -47,4 +47,10 @@ class Library
       @returns[book] = 1
     end
   end
+
+  def most_popular_book
+    @returns.max_by do |book, returns|
+      returns
+    end[0]
+  end
 end
