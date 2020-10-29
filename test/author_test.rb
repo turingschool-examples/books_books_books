@@ -24,16 +24,18 @@ class AuthorTest < Minitest::Test
   end
 
   def test_author_can_write_a_book
-    skip
     charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})
     jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
-
+    
     assert_equal Book, jane_eyre.class
     assert_equal "Jane Eyre", jane_eyre.title
 
     villette = charlotte_bronte.write("Villette", "1853")
+    charlotte_bronte.add_book(jane_eyre)
+    charlotte_bronte.add_book(villette)
+
     expected = [jane_eyre, villette]
-    assert_equal charlotte_bronte.books
+    assert_equal expected, charlotte_bronte.books
   end
 
 end
