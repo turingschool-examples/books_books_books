@@ -44,7 +44,44 @@ class LibraryTest < Minitest::Test
     assert_equal expected, dpl.books
   end
 
-  def test_publication_time_frame
+  def test_find_author
+    dpl = Library.new("Denver Public Library")
+
+    charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})
+    harper_lee = Author.new({first_name: "Harper", last_name: "Lee"})
+    dpl.add_author(charlotte_bronte)
+    dpl.add_author(harper_lee)
+
+    assert_equal charlotte_bronte, dpl.find_author(charlotte_bronte)
+  end
+
+  def test_last_book
+  dpl = Library.new("Denver Public Library")
+
+  charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})
+  jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+  professor = charlotte_bronte.write("The Professor", "1857")
+  villette = charlotte_bronte.write("Villette", "1853")
+
+  dpl.add_author(charlotte_bronte)
+
+  assert_equal professor, dpl.last_book(charlotte_bronte)
+  end
+
+  def test_first_book
+  dpl = Library.new("Denver Public Library")
+
+  charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})
+  jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+  professor = charlotte_bronte.write("The Professor", "1857")
+  villette = charlotte_bronte.write("Villette", "1853")
+
+  dpl.add_author(charlotte_bronte)
+
+  assert_equal jane_eyre, dpl.first_book(charlotte_bronte)
+  end
+
+  def test_publication_time_frame_for
     dpl = Library.new("Denver Public Library")
 
     charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})
