@@ -1,4 +1,4 @@
-require require 'minitest/autorun'
+require 'minitest/autorun'
 require './lib/book'
 
 class BookTest < MiniTest::Test
