@@ -1,11 +1,13 @@
 class Library
   attr_reader :name,
               :books,
+              :checked_out_books,
               :authors
 
   def initialize(name)
     @name = name
     @books = []
+    @checked_out_books = []
     @authors = []
   end
 
@@ -26,5 +28,14 @@ class Library
     end
 
     {:start => min.to_s, :end => max.to_s}
+  end
+
+  def checkout(book)
+    if books.include?(book)
+      @books.delete(book)
+      @checked_out_books << book
+    else
+      false
+    end
   end
 end
