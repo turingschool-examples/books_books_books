@@ -25,6 +25,7 @@ class LibraryTest < Minitest::Test
   end
 
   def test_add_author
+    skip
     @dpl.add_author(@charlotte_bronte)
     @dpl.add_author(@harper_lee)
 
@@ -33,6 +34,7 @@ class LibraryTest < Minitest::Test
   end
 
   def test_publication_time_frame
+    skip
     @dpl.add_author(@charlotte_bronte)
     @dpl.add_author(@harper_lee)
 

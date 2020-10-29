@@ -1,3 +1,5 @@
+require './lib/book'
+
 class Author
   attr_reader :name, :books
 
@@ -14,6 +16,6 @@ class Author
                         author_last_name: @last_name,
                         publication_date: date
                         })
-    @books.last                    
+    @books.last
   end
 end
