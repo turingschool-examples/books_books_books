@@ -28,6 +28,9 @@ class Test < Minitest::Test
     @library.add_author(@author1)
     @library.add_author(@author2)
     assert_equal [@author1, @author2], @library.authors
-    # assert_equal [@book1, @book2, @book3, @book4], @library.books
+  end
+
+  def test_it_has_books
+    assert_equal [@book1, @book2, @book3, @book4], @library.books
   end
 end
