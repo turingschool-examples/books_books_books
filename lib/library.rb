@@ -21,4 +21,8 @@ class Library
       end: author.latest_year_published
     }
   end
+
+  def checkout(book)
+    @books.include?(book)
+  end
 end
