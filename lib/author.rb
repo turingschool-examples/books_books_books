@@ -10,4 +10,12 @@ class Author
     @first_name = first_name
     @last_name = last_name
   end
+
+  def name
+    @name = first_name + " " + last_name
+  end
+
+  def books
+    books = []
+  end
 end
