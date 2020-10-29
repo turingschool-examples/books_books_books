@@ -45,6 +45,7 @@ class Library
     end
 
     def return(book)
+        book.checked_out = false
     end
 
     def most_popular_book
