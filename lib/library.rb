@@ -20,6 +20,10 @@ class Library
 
   def publication_time_frame_for(author)
     book_dates = book_dates_for(author)
+    time_frame(book_dates)
+  end
+
+  def time_frame(book_dates)
     time_frame = {}
     time_frame[:start] = book_dates.min
     time_frame[:end] = book_dates.max
