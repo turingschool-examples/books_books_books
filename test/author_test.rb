@@ -14,15 +14,14 @@ class AuthorTest < Minitest::Test
     assert_equal "Charlotte Bronte", charlotte_bronte.name
     assert_equal [], charlotte_bronte.books
   end
-
-  def test_it_can_write
-    charlotte_bronte = Author.new({
-      first_name: "Charlotte",
-       last_name: "Bronte"
-       })
-       # require "pry"; binding.pry
-    jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
-
-    assert_equal Book, jane_eyre.class
-  end
+  # 
+  # def test_it_can_write
+  #   charlotte_bronte = Author.new({
+  #     first_name: "Charlotte",
+  #      last_name: "Bronte"
+  #      })
+  #   jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+  #
+  #   assert_equal Book, jane_eyre.class
+  # end
 end

@@ -1,5 +1,3 @@
-require './lib/book'
-
 class Author
 
   attr_reader :books
@@ -10,11 +8,10 @@ class Author
   end
 
   def name
-    # @book.author
     @first_name + " " + @last_name
   end
 
-  def write(author_name, date)
-    
-  end
+  # def write(author_name, date)
+  #
+  # end
 end

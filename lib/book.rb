@@ -1,4 +1,5 @@
 class Book
+  
   attr_reader :title
   def initialize(book_data)
     @author_first_name = book_data[:author_first_name]
