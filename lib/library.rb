@@ -3,13 +3,13 @@ class Library
               :books,
               :authors,
               :checked_out_books,
-              :returns
+              :times_checked_out
   def initialize(name)
     @name = name
     @books = []
     @authors = []
     @checked_out_books = []
-    @returns = {}
+    @times_checked_out = {}
   end
 
   def add_author(author)
@@ -36,21 +36,26 @@ class Library
       false
     else
       @checked_out_books << book
+      times_checked_out(book)
+    end
+  end
+
+  def times_checked_out(book)
+    if @times_checked_out[book]
+      @times_checked_out[book] += 1
+    else
+      @times_checked_out[book] = 1
     end
   end
 
   def return(book)
     @checked_out_books.delete(book)
-    if @returns[book]
-      @returns[book] += 1
-    else
-      @returns[book] = 1
-    end
   end
 
   def most_popular_book
-    @returns.max_by do |book, returns|
-      returns
+    require 'pry'; binding.pry
+    @times_checked_out.max_by do |book, amount_checked_out|
+      amount_checked_out
     end[0]
   end
 end
