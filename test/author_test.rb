@@ -16,7 +16,6 @@ class AuthorTest < MiniTest::Test
 
     assert_equal Book, jane_eyre.class
     assert_equal "Jane Eyre", jane_eyre.title
-
     villette = charlotte_bronte.write("Villette", "1853")
 
     assert_equal [jane_eyre, villette], charlotte_bronte.books
