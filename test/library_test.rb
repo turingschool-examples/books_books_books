@@ -56,13 +56,13 @@ class Test < Minitest::Test
   end
 
   def test_checkout_helpers
-    assert_equal false, book_exists(@book1)
-    assert_equal true, book_is_free(@book1)
+    assert_equal false, @library.book_exists(@book1)
+    assert_equal true, @library.book_is_free(@book1)
     @library.add_author(@author1)
-    assert_equal true, book_exists(@book1)
-    assert_equal true, book_is_free(@book1)
-    @library.add_author(@book1)
-    assert_equal true, book_exists(@book1)
-    assert_equal false, book_is_free(@book1)
+    assert_equal true, @library.book_exists(@book1)
+    assert_equal true, @library.book_is_free(@book1)
+    @library.checkout(@book1)
+    assert_equal true, @library.book_exists(@book1)
+    assert_equal false, @library.book_is_free(@book1)
   end
 end
