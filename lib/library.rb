@@ -19,4 +19,23 @@ class Library
       @books << book
     end
   end
+
+  def publication_time_frame_for(author)
+    {
+      :start => first_book(author),
+      :end => last_book(author)
+    }
+  end
+
+  def last_book(author)
+    author.books.max_by do |book|
+      book.publication_year
+    end.publication_year
+  end
+
+  def first_book(author)
+    author.books.min_by do |book|
+      book.publication_year
+    end.publication_year
+  end
 end
