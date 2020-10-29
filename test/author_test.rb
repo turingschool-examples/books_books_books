@@ -22,15 +22,35 @@ class AuthorTest < Minitest::Test
     end
 
     def test_it_can_write_books
-        expected = Book.new({author_first_name: "Charlotte",
+        expected_1 = Book.new({author_first_name: "Charlotte",
                              author_last_name: "Bronte",
                              publication_date: "October 16, 1847",
                              title: "Jane Eyre"})
 
+        expected_2 = Book.new({author_first_name: "Charlotte",
+                               author_last_name: "Bronte",
+                               publication_date: "1853",
+                               title: "Villette"})
+
         jane_eyre = @charlotte_bronte.write("Jane Eyre", "October 16, 1847")
-        assert_equal expected.class , jane_eyre.class
-        assert_equal expected.title , jane_eyre.title
+        villette = @charlotte_bronte.write("Villette", "1853")
+
+        
+        assert_equal expected_1.class , jane_eyre.class
+        assert_equal expected_1.title , jane_eyre.title
+
+        assert_equal expected_2.class , villette.class
+        assert_equal expected_2.title , villette.title
+
+
     end
 
-    
+    def test_it_can_add_books
+        jane_eyre = @charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+        villette = @charlotte_bronte.write("Villette", "1853")
+
+        assert_equal [jane_eyre , villette] , @charlotte_bronte.books
+    end
+
+
 end
