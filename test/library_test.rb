@@ -33,11 +33,18 @@ class LibraryTest < Minitest::Test
   end
 
   def test_publication_time_frame
-    skip
     @dpl.add_author(@charlotte_bronte)
     @dpl.add_author(@harper_lee)
 
     assert_equal ({:start=>"1847", :end=>"1857"}), @dpl.publication_time_frame_for(@charlotte_bronte)
     assert_equal ({:start=>"1960", :end=>"1960"}), @dpl.publication_time_frame_for(@harper_lee)
+  end
+
+  def test_first_book
+    assert_equal @jane_eyre, @dpl.first_book(@charlotte_bronte)
+  end
+
+  def test_last_book
+    assert_equal @professor, @dpl.last_book(@charlotte_bronte)
   end
 end
