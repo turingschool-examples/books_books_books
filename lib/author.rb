@@ -18,5 +18,14 @@ attr_reader :first_name,
       title: title,
       publication_date: pub_date
       })
+      # require "pry"; binding.pry
+    # (@books << book).flatten
   end
+
+#   def books
+#     books = []
+# # require "pry"; binding.pry
+#     # # books << book
+#     # end
+#   end
 end

@@ -20,7 +20,11 @@ class AuthorTest < Minitest::Test
       last_name: "Bronte"})
     jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
     assert_equal Book, jane_eyre.class
-    assert_equal "Jane Eyre", jane_eyre.title 
+    assert_equal "Jane Eyre", jane_eyre.title
+    villette = charlotte_bronte.write("Villette", "1853")
+    assert_equal "Villette", villette.title
+    assert_equal "1853", villette.publication_year
+    assert_equal "1853", villette.publication_date
+    assert_equal [jane_eyre, villette].flatten, charlotte_bronte.books
   end
-
 end
