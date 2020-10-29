@@ -18,10 +18,16 @@ class Author
     @books.push(new_book)
     new_book
   end
+
+  def earliest_year_published
+    @books.min_by do |book|
+      book.publication_year.to_i
+    end.publication_year
+  end
+
+  def latest_year_published
+    @books.max_by do |book|
+      book.publication_year.to_i
+    end.publication_year
+  end
 end
-
-
-# author_first_name: "Harper",
-# author_last_name: "Lee",
-# title: "To Kill a Mockingbird",
-# publication_date: "July 11, 1960"})
