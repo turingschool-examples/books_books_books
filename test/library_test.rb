@@ -31,6 +31,16 @@ class Test < Minitest::Test
   end
 
   def test_it_has_books
+    @library.add_author(@author1)
+    @library.add_author(@author2)
     assert_equal [@book1, @book2, @book3, @book4], @library.books
+  end
+
+  def test_it_has_publication_time_frame_for
+    expected1 = {:start=>"1847", :end=>"1857"}
+    expected2 = {:start=>"1960", :end=>"1960"}
+    
+    assert_equal expected1, @library.publication_time_frame_for(@author1)
+    assert_equal expected2, @library.publication_time_frame_for(@author2)
   end
 end
