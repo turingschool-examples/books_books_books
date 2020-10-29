@@ -4,6 +4,7 @@ class Library
     @name = name
     @authors = []
     @checked_out_books = []
+    @book_popularity_hash = {}
   end
 
   def add_author(author)
@@ -40,10 +41,15 @@ class Library
   def checkout(book)
     if book_exists(book) && book_is_free(book)
       checked_out_books << book
+      add_popularity(book)
       true
     else
       false
     end
+  end
+
+  def return(book)
+    checked_out_books.delete(book)
   end
 
   def book_exists(book)
@@ -52,5 +58,16 @@ class Library
 
   def book_is_free(book)
     !checked_out_books.include?(book)
+  end
+
+  def add_popularity(book)
+    @book_popularity_hash[book] ||= 0
+    @book_popularity_hash[book] += 1
+  end
+
+  def most_popular_book
+    @book_popularity_hash.max_by do |book,times_checked_out|
+      times_checked_out
+    end[0]
   end
 end
