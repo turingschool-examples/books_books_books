@@ -7,6 +7,8 @@ class Book
     @publication_date = data[:publication_date]
   end
 
-
+  def publication_year
+    @publication_date[-4..-1]
+  end
 
 end
