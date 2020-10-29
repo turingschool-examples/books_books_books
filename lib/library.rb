@@ -6,6 +6,7 @@ class Library
     @authors = []
     @books = []
     @checked_out_books = []
+    @books_by_popularity = Hash.new(0)
   end
 
   def add_author(author)
@@ -35,6 +36,7 @@ class Library
   def checkout(book)
     if available?(book)
       @checked_out_books << book
+      @books_by_popularity[book] += 1
       true
     else
       false
@@ -49,4 +51,10 @@ class Library
     @checked_out_books.delete(book)
   end
 
+  def most_popular_book
+    most_popular = @books_by_popularity.max_by do |book, times_checked_out|
+      times_checked_out
+    end
+    most_popular[0]
+  end
 end
