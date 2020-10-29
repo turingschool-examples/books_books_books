@@ -21,6 +21,7 @@ class Test < Minitest::Test
 
     assert_equal "Denver Public Library", @library.name
     assert_equal [], @library.authors
+    assert_equal [], @library.checked_out_books
   end
 
   def test_it_adds_authors
@@ -39,7 +40,7 @@ class Test < Minitest::Test
   def test_it_has_publication_time_frame_for
     expected1 = {:start=>"1847", :end=>"1857"}
     expected2 = {:start=>"1960", :end=>"1960"}
-    
+
     assert_equal expected1, @library.publication_time_frame_for(@author1)
     assert_equal expected2, @library.publication_time_frame_for(@author2)
   end
