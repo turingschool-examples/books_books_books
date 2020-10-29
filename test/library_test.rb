@@ -65,4 +65,12 @@ class Test < Minitest::Test
     assert_equal true, @library.book_exists(@book1)
     assert_equal false, @library.book_is_free(@book1)
   end
+
+  def test_add_popularity_and_most_popular_book
+    @library.add_popularity(@book1)
+    assert_equal @book1, @library.most_popular_book
+    @library.add_popularity(@book2)
+    @library.add_popularity(@book2)
+    assert_equal @book2, @library.most_popular_book
+  end
 end
