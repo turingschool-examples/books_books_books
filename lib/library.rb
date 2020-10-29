@@ -38,4 +38,13 @@ class Library
       @checked_out_books << book
     end
   end
+
+  def return(book)
+    @checked_out_books.delete(book)
+    if @returns[book]
+      @returns[book] += 1
+    else
+      @returns[book] = 1
+    end
+  end
 end
