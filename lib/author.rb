@@ -25,6 +25,4 @@ class Author
   def add_book(book)
     @books << book
   end
-
-
 end
