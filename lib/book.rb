@@ -5,6 +5,4 @@ class Book
     @author = data[:author_first_name] + " " + data[:author_last_name]
     @publication_year = data[:publication_date][9..12]
   end
-
-  
 end
