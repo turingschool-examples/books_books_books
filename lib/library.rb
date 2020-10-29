@@ -1,10 +1,11 @@
 class Library
-  attr_reader :authors, :books, :name
+  attr_reader :authors, :books, :name, :checked_out_books
 
   def initialize(name)
     @name = name
     @authors = []
     @books = []
+    @checked_out_books = []
   end
 
   def add_author(author)
@@ -30,4 +31,18 @@ class Library
       book.publication_year
     end
   end
+
+  def checkout(book)
+    if available?(book)
+      @checked_out_books << book
+      true
+    else
+      false
+    end
+  end
+
+  def available?(book)
+    @books.include?(book) && !@checked_out_books.include?(book)
+  end
+
 end

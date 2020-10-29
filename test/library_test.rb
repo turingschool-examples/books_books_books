@@ -70,7 +70,20 @@ class LibraryTest < Minitest::Test
     assert_equal false, @dpl.checkout(@jane_eyre)
   end
 
+  def test_available
+    assert_equal false, @dpl.available?(@jane_eyre)
+
+    @dpl.add_author(@charlotte_bronte)
+
+    assert_equal true, @dpl.available?(@jane_eyre)
+
+    @dpl.checkout(@jane_eyre)
+
+    assert_equal false, @dpl.available?(@jane_eyre)
+  end
+
   def test_return
+    skip
     @dpl.add_author(@charlotte_bronte)
     @dpl.add_author(@harper_lee)
     @dpl.checkout(@jane_eyre)
@@ -81,6 +94,7 @@ class LibraryTest < Minitest::Test
   end
 
   def test_most_popular_book
+    skip
     @dpl.add_author(@charlotte_bronte)
     @dpl.add_author(@harper_lee)
 
