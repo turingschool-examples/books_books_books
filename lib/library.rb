@@ -37,7 +37,8 @@ class Library
     def checkout(book)
         if self.books.include? book
             if book.checked_out == false
-            book.checked_out = true
+                book.rating += 1
+                book.checked_out = true
             else false
             end
         else return false
@@ -49,5 +50,8 @@ class Library
     end
 
     def most_popular_book
+        @books.max_by do |book|
+            book.rating
+        end
     end
 end

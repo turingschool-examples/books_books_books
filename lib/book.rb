@@ -5,7 +5,7 @@ class Book
                 :title,
                 :publication_date
 
-    attr_accessor :checked_out
+    attr_accessor :checked_out, :rating
 
     def initialize(data)
         @author_first_name = data[:author_first_name]
@@ -13,6 +13,7 @@ class Book
         @title = data[:title]
         @publication_date = data[:publication_date]
         @checked_out = data[:checked_out] = false
+        @rating = data[:rating] = 0
     end
 
     def author
