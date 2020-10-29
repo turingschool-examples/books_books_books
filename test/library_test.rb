@@ -36,6 +36,12 @@ class LibraryTest < Minitest::Test
     assert_equal expected, @dpl.publication_time_frame_for(@harper_lee)
   end
 
+  def test_it_can_run_checkoutable_check
+    @dpl.add_author(@charlotte_bronte)
+    @dpl.add_author(@harper_lee)
+    assert @dpl.checkoutable?(@jane_eyre)
+  end
+
   def test_it_can_checkout_books
     assert_equal false, @dpl.checkout(@mockingbird)
     assert_equal false, @dpl.checkout(@jane_eyre)
