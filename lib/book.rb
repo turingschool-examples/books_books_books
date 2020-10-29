@@ -17,6 +17,5 @@ class Book
 
     def publication_year
         date = @publication_date.split(",").map(&:strip)[1]
-
     end
 end

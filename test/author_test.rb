@@ -11,6 +11,8 @@ class AuthorTest < Minitest::Test
     end
 
     def test_it_has_attributes
-        
+        assert_equal "Charlotte" , @charlotte_bronte.first_name
+        assert_equal "Bronte" , @charlotte_bronte.last_name
+        assert_equal [] , @charlotte_bronte.books
     end
 end
