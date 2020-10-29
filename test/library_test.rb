@@ -79,4 +79,20 @@ class Test < MiniTest::Test
 
         assert_equal true, @dpl.checkout(@mockingbird)
     end
+
+    def test_library_has_most_popular_book
+        @dpl.add_author(@charlotte_bronte)
+        @dpl.add_author(@harper_lee)
+        @dpl.checkout(@jane_eyre)
+        @dpl.return(@jane_eyre)
+        @dpl.checkout(@jane_eyre)
+        @dpl.checkout(@villette)
+        @dpl.checkout(@mockingbird)
+        @dpl.return(@mockingbird)
+        @dpl.checkout(@mockingbird)
+        @dpl.return(@mockingbird)
+        @dpl.checkout(@mockingbird)
+
+        assert_equal @mockingbird, @dpl.most_popular_book
+    end
 end
