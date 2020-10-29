@@ -46,4 +46,19 @@ class LibraryTest < Minitest::Test
     expected = {:start=>"1960", :end=>"1960"}
     assert_equal expected, dpl.publication_time_frame_for(harper_lee)
   end
+
+  def test_it_can_checkout
+    dpl = Library.new("Denver Public Library")
+    charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})
+    jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+    villette = charlotte_bronte.write("Villette", "1853")
+    harper_lee = Author.new({first_name: "Harper", last_name: "Lee"})
+    mockingbird = harper_lee.write("To Kill a Mockingbird", "July 11, 1960")
+
+    assert_equal false, dpl.checkout(mockingbird)
+
+    dpl.add_author(charlotte_bronte)
+
+    assert dpl.checkout(jane_eyre)
+  end
 end
