@@ -87,6 +87,7 @@ class LibraryTest < Minitest::Test
     harper_lee = Author.new({first_name: "Harper", last_name: "Lee"})
     mockingbird = harper_lee.write("To Kill a Mockingbird", "July 11, 1960")
     dpl.add_author(charlotte_bronte)
+    dpl.add_author(harper_lee)
     dpl.checkout(jane_eyre)
     dpl.return(jane_eyre)
     dpl.checkout(jane_eyre)
@@ -98,5 +99,27 @@ class LibraryTest < Minitest::Test
     dpl.checkout(mockingbird)
 
     assert_equal mockingbird, dpl.most_popular_book
+  end
+
+  def test_it_can_check_times_checked_out
+    dpl = Library.new("Denver Public Library")
+    charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})
+    jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+    villette = charlotte_bronte.write("Villette", "1853")
+    harper_lee = Author.new({first_name: "Harper", last_name: "Lee"})
+    mockingbird = harper_lee.write("To Kill a Mockingbird", "July 11, 1960")
+    dpl.add_author(charlotte_bronte)
+    dpl.add_author(harper_lee)
+    dpl.checkout(jane_eyre)
+    dpl.return(jane_eyre)
+    dpl.checkout(jane_eyre)
+    dpl.checkout(villette)
+    dpl.checkout(mockingbird)
+    dpl.return(mockingbird)
+    dpl.checkout(mockingbird)
+    dpl.return(mockingbird)
+    dpl.checkout(mockingbird)
+
+    assert_equal 2, dpl.times_checked_out(jane_eyre)
   end
 end
