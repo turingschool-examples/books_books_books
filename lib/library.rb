@@ -3,14 +3,14 @@ class Library
               :books,
               :checked_out_books,
               :authors,
-              :checkout_count
+              :checkouts
 
   def initialize(name)
     @name = name
     @books = []
     @checked_out_books = []
     @authors = []
-    @checkout_count = {}
+    @checkouts = {}
   end
 
   def add_author(author)
@@ -34,6 +34,7 @@ class Library
 
   def checkout(book)
     if books.include?(book)
+      count_checkout(book)
       @books.delete(book)
       @checked_out_books << book
     else
@@ -41,8 +42,21 @@ class Library
     end
   end
 
+  def count_checkout(book)
+    title_key = book.title.to_sym
+    if checkouts.key?(title_key)
+      checkouts[title_key] += 1
+    else
+      checkouts[title_key] = 1
+    end
+  end
+
   def return(book)
     @checked_out_books.delete(book)
     @books << book
+  end
+
+  def most_popular_book
+
   end
 end
