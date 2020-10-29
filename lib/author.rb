@@ -11,11 +11,25 @@ class Author
   end
 
   def write(title, date)
-    @books << Book.new({title: title,
+    books << Book.new({title: title,
                         author_first_name: @first_name,
                         author_last_name: @last_name,
                         publication_date: date
                         })
-    @books.last
+    books.last
+  end
+
+  def first_book_published
+    first = books.min_by do |book|
+      book.publication_year
+    end
+    first.publication_year
+  end
+
+  def last_book_published
+    last = books.max_by do |book|
+      book.publication_year
+    end
+    last.publication_year
   end
 end

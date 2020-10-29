@@ -16,21 +16,9 @@ class Library
 
   def publication_time_frame_for(author)
     time_frame = Hash.new
-    time_frame[:start] = first_book(author).publication_year
-    time_frame[:end] = last_book(author).publication_year
+    time_frame[:start] = author.first_book_published
+    time_frame[:end] = author.last_book_published
     time_frame
-  end
-
-  def first_book(author)
-    author.books.min_by do |book|
-      book.publication_year
-    end
-  end
-
-  def last_book(author)
-    author.books.max_by do |book|
-      book.publication_year
-    end
   end
 
   def checkout(book)
