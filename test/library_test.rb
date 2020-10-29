@@ -16,22 +16,6 @@ class LibraryTest < Minitest::Test
             last_name: "Lee"
             }
         )
-        @jane_eyre = @charlotte_bronte.write(
-            "Jane Eyre", 
-            "October 16, 1847"
-        )
-        @professor = @charlotte_bronte.write(
-            "The Professor",
-            "1857"
-        )
-        @villette = @charlotte_bronte.write(
-            "Villette",
-            "1853"
-        )
-        @mockingbird = @harper_lee.write(
-            "To Kill a Mockingbird", 
-            "July 11, 1960"
-        )
     end
 
     def test_it_exists_and_has_attributes
@@ -42,17 +26,27 @@ class LibraryTest < Minitest::Test
     end
 
     def test_it_can_add_authors
+        jane_eyre = @charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+        professor = @charlotte_bronte.write("The Professor", "1857")
+        villette = @charlotte_bronte.write("Villette", "1853")
+        mockingbird = @harper_lee.write("To Kill a Mockingbird", "July 11, 1960")
+
         @dpl.add_author(@charlotte_bronte)
         @dpl.add_author(@harper_lee)
 
         expected_1 = [@charlotte_bronte, @harper_lee]
-        expected_2 = [@jane_eyre, @professor, @villette, @mockingbird]
+        expected_2 = [jane_eyre, professor, villette, mockingbird]
 
         assert_equal expected_1, @dpl.authors
         assert_equal expected_2, @dpl.books
     end
 
     def test_it_can_return_publication_time_frame_by_author
+        jane_eyre = @charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+        professor = @charlotte_bronte.write("The Professor", "1857")
+        villette = @charlotte_bronte.write("Villette", "1853")
+        mockingbird = @harper_lee.write("To Kill a Mockingbird", "July 11, 1960")
+        
         @dpl.add_author(@charlotte_bronte)
         @dpl.add_author(@harper_lee)
 
@@ -61,6 +55,64 @@ class LibraryTest < Minitest::Test
 
         assert_equal expected_1, @dpl.publication_time_frame_for(@charlotte_bronte)        
         assert_equal expected_2, @dpl.publication_time_frame_for(@harper_lee)
+    end
+
+    def test_it_can_checkout
+        jane_eyre = @charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+        villette = @charlotte_bronte.write("Villette", "1853")
+        mockingbird = @harper_lee.write("To Kill a Mockingbird", "July 11, 1960")
+
+        refute @dpl.checkout(mockingbird)
+        refute @dpl.checkout(jane_eyre)
+        
+        @dpl.add_author(@charlotte_bronte)
+        @dpl.add_author(@harper_lee)    
+        # require 'pry'; binding.pry
+        assert @dpl.checkout(jane_eyre)
+    end
+
+    def test_it_can_list_checked_out_books
+        skip
+        jane_eyre = @charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+        villette = @charlotte_bronte.write("Villette", "1853")
+        mockingbird = @harper_lee.write("To Kill a Mockingbird", "July 11, 1960")
+        
+        @dpl.add_author(@charlotte_bronte)
+        @dpl.add_author(@harper_lee)  
+        @dpl.checkout(jane_eyre)
+
+        assert_equal [jane_eyre], @dpl.checked_out_books
+        refute dpl.checkout(jane_eyre)
+    end
+
+    def test_it_can_return_books
+        skip
+        jane_eyre = @charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+        villette = @charlotte_bronte.write("Villette", "1853")
+        mockingbird = @harper_lee.write("To Kill a Mockingbird", "July 11, 1960")
+        
+        @dpl.add_author(@charlotte_bronte)
+        @dpl.add_author(@harper_lee)  
+        @dpl.checkout(jane_eyre)
+        dpl.return(jane_eyre)
+
+        assert_equal [], @dpl.checked_out_books
+        
+        @dpl.checkout(jane_eyre)
+        @dpl.checkout(villette)
+        
+        assert_equal [jane_eyre, villete], @dpl.checked_out_books
+        
+        @dpl.checkout(mockingbird)
+        @dpl.return(mockingbird)
+        @dpl.checkout(mockingbird)
+        @dpl.return(mockingbird)
+
+        assert @dpl.checkout(mockingbird)
+    end
+
+    def test_it_can_provide_most_popular_book
+        skip
     end
 
 end

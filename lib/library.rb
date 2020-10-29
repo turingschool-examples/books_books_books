@@ -28,14 +28,25 @@ class Library
         frame
     end
 
+    def checkout_out_books
+        library.books.find_all do |book|
+            book.checked_out = true
+        end
+    end
+
+    def checkout(book)
+        if self.books.include? book
+            if book.checked_out == false
+            book.checked_out = true
+            else false
+            end
+        else return false
+        end
+    end
+
+    def return(book)
+    end
+
+    def most_popular_book
+    end
 end
-
-
-
-#The `publication_time_frame_for` method takes an `Author` 
-# object as an argument and returns a hash with two 
-# key/value pairs:
-# * `:start` which points to the publication year of the 
-# `Author`'s first book.
-# * `:end` which points to the publication year of the 
-# `Author`'s last book.
