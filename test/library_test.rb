@@ -11,7 +11,8 @@ class Test < Minitest::Test
     assert_instance_of Library, @library
 
     assert_equal "Denver Public Library", @library.name
-    assert_equal [], @library.books
     assert_equal [], @library.authors
   end
+
+
 end
