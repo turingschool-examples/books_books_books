@@ -33,4 +33,12 @@ class Library
     }
   end
 
+  def checkout(book_obj)
+    if @books.include?(book_obj) || book_obj.rented != true
+      false
+    else
+      true
+    end
+  end
+
 end
