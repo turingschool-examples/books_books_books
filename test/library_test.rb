@@ -60,13 +60,13 @@ class LibraryTest < Minitest::Test
     dpl.add_author(harper_lee)
 
     expected_bronte = {
-      :start=>"1847", 
-      :end=>"1857"
+      :start => "1847", 
+      :end => "1857"
     }
 
     expected_lee = {
-      :start=>"1960", 
-      :end=>"1960"
+      :start => "1960", 
+      :end => "1960"
     }
 
     assert_equal expected_bronte, dpl.publication_time_frame_for(charlotte_bronte)
