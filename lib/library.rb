@@ -9,6 +9,7 @@ class Library
   end
 
   def add_author(author)
+    #an add_book method is probably more proper as a library is unlikely to add all books of an author at once.
     author.books.each { |book| @books << book }
     @authors << author
   end
@@ -36,9 +37,11 @@ class Library
       @books << book
       @checked_out_books.delete(book)
     end
+    #did not include an else statement for the sake of inappropriate checkouts or lost/stolen and not on record
   end
 
   def most_popular_book
+    require 'pry';binding.pry
     checkout_count = {}
     @checkout_log.each { |book| checkout_count[book] ? checkout_count[book] += 1 : checkout_count[book] = 1 }
     checkout_count.max_by { |book, count| count}[0]
