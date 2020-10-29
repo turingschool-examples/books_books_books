@@ -5,6 +5,7 @@ class Library
     @name = name
     @books = []
     @authors = []
+    @checked_out_books = []
   end
 
   def add_author(author_obj)
