@@ -2,7 +2,8 @@ class Library
   attr_reader :name,
               :books,
               :authors,
-              :checked_out_books
+              :checked_out_books,
+              :popularity
   def initialize(name)
     @name = name
     @books = []
