@@ -9,4 +9,8 @@ class Author
     @last_name = author_deets[:last_name]
 
   end
+
+  def name
+    @first_name + " " + @last_name
+  end
 end
