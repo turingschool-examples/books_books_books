@@ -25,7 +25,6 @@ class LibraryTest < Minitest::Test
   end
 
   def test_add_author
-    skip
     @dpl.add_author(@charlotte_bronte)
     @dpl.add_author(@harper_lee)
 
