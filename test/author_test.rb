@@ -24,6 +24,7 @@ class AuthorTest < Minitest::Test
   end
 
   def test_author_can_write_a_book
+    skip
     charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})
     jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
 
