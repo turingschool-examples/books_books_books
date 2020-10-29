@@ -38,7 +38,6 @@ class Library
     if @books.include?(book_obj) || @checked_out_books.include?(book_obj)
       false
     else
-      # require "pry"; binding.pry
       book_obj.issue_count += 1
       @checked_out_books << book_obj
       true
