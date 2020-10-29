@@ -8,6 +8,7 @@ class Library
     @books = []
     @authors = []
     @checked_out_books = []
+    @popularity = Hash.new { |popularity, book| popularity[book] = 0 }
   end
 
   def add_author(author)
@@ -30,10 +31,17 @@ class Library
 
   def checkout(book)
     if checkoutable?(book)
+      @popularity[book] += 1
       @checked_out_books.push(book)
     else
       false
     end
+  end
+
+  def most_popular_book
+    @popularity.max_by do |book, count_checked_out|
+      count_checked_out
+    end.first
   end
 
   def return(book)
