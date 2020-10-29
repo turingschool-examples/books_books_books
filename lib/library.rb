@@ -2,13 +2,15 @@ class Library
   attr_reader :name,
               :books,
               :checked_out_books,
-              :authors
+              :authors,
+              :checkout_count
 
   def initialize(name)
     @name = name
     @books = []
     @checked_out_books = []
     @authors = []
+    @checkout_count = {}
   end
 
   def add_author(author)
@@ -37,5 +39,10 @@ class Library
     else
       false
     end
+  end
+
+  def return(book)
+    @checked_out_books.delete(book)
+    @books << book
   end
 end
