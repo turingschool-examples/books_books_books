@@ -37,7 +37,12 @@ class LibraryTest < Minitest::Test
   end
 
   def test_it_can_checkout_books
-    refute @dpl.checkout(@mockingbird)
-    refute @dpl.checkout(@jane_eyre)
+    assert_equal false, @dpl.checkout(@mockingbird)
+    assert_equal false, @dpl.checkout(@jane_eyre)
+    @dpl.add_author(@charlotte_bronte)
+    @dpl.add_author(@harper_lee)
+    assert @dpl.checkout(@jane_eyre)
+    assert_equal [@jane_eyre], @dpl.checked_out_books
+    assert_equal false, @dpl.checkout(@jane_eyre)
   end
 end
