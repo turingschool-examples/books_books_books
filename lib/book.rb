@@ -13,7 +13,7 @@ class Book
   end
 
   def year
-    @publication_date.split(" ")[2] 
+    @publication_date.chars.last(4).join
   end
 
 end
