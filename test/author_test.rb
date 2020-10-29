@@ -28,5 +28,4 @@ class Test < MiniTest::Test
         assert_instance_of Book, villette
         assert_equal [jane_eyre, villette], @charlotte_bronte.books
     end
-
 end
