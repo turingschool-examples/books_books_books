@@ -115,4 +115,25 @@ class LibraryTest < Minitest::Test
 
     assert_equal mockingbird, @dpl.most_popular_book
   end
+
+  def test_checkout_count
+    charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})
+    jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+    professor = charlotte_bronte.write("The Professor", "1857")
+    villette = charlotte_bronte.write("Villette", "1853")
+    harper_lee = Author.new({first_name: "Harper", last_name: "Lee"})
+    mockingbird = harper_lee.write("To Kill a Mockingbird", "July 11, 1960")
+    
+    @dpl.add_author(charlotte_bronte)
+    @dpl.add_author(harper_lee)
+    
+    @dpl.checkout(jane_eyre)
+    @dpl.checkout(villette)
+    @dpl.checkout(mockingbird)
+    @dpl.return(mockingbird)
+    @dpl.checkout(mockingbird)
+
+    count = {:jane_eyre => 1, :villet => 1, :mockingbird => 2}
+    assert_equal count, @dpl.count_checkout
+  end
 end
