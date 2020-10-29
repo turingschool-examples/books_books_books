@@ -18,6 +18,7 @@ class AuthorTest < Minitest::Test
   end
 
   def test_write
+    skip
     jane_eyre = @charlotte_bronte.write("Jane Eyre", "October 16, 1847")
 
     assert_instance_of Book, jane_eyre
