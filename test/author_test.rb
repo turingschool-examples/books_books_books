@@ -9,5 +9,6 @@ class AuthorTest < Minitest::Test
 
     assert_instance_of Author, charlotte_bronte
     assert_equal "Charlotte Bronte", charlotte_bronte.name
+    assert_equal [], charlotte_bronte.books
   end
 end
