@@ -62,5 +62,4 @@ class Library
             checkouts
         end[0]
     end
-
 end

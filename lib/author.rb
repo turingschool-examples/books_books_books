@@ -24,5 +24,4 @@ class Author
             publication_date: date
         }
     end
-
 end
