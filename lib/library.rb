@@ -38,4 +38,11 @@ class Library
       book.publication_year
     end.publication_year
   end
+
+  def checkout(book_to_checkout)
+    available = @books.find do |book|
+      book == book_to_checkout
+    end
+    available != nil
+  end
 end
