@@ -22,4 +22,8 @@ class BookTest < Minitest::Test
      assert_equal "To Kill a Mockingbird", @book.title
      assert_equal "July 11, 1960", @book.publication_date
    end
+
+   def test_we_can_combine_elements_of_hash
+     assert_equal "Harper Lee", @book.author
+   end
 end

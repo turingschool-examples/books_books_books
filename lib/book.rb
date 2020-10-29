@@ -6,4 +6,8 @@ class Book
     @title = details[:title]
     @publication_date = details[:publication_date]
   end
+
+  def author
+    @author_first_name +" " + @author_last_name
+  end
 end
