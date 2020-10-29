@@ -17,6 +17,17 @@ class Library
             @books << book
         end
     end
+
+    def publication_time_frame_for(author)
+        frame = {}
+        pub_dates = author.books.map do |book|
+            book.publication_year
+        end
+        frame[:start] = pub_dates.min
+        frame[:end] = pub_dates.max
+        frame
+    end
+
 end
 
 

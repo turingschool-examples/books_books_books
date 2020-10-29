@@ -53,16 +53,14 @@ class LibraryTest < Minitest::Test
     end
 
     def test_it_can_return_publication_time_frame_by_author
-       skip
-        dpl.add_author(@charlotte_bronte)
-        dpl.add_author(@harper_lee)
+        @dpl.add_author(@charlotte_bronte)
+        @dpl.add_author(@harper_lee)
 
         expected_1 = {:start=>"1847", :end=>"1857"}
         expected_2 = {:start=>"1960", :end=>"1960"}
-         
 
-        assert_equal expected_1,dpl.publication_time_frame_for(charlotte_bronte)        
-        assert_equal expected_2, dpl.publication_time_frame_for(harper_lee)
+        assert_equal expected_1, @dpl.publication_time_frame_for(@charlotte_bronte)        
+        assert_equal expected_2, @dpl.publication_time_frame_for(@harper_lee)
     end
 
 end
