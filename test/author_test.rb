@@ -20,4 +20,12 @@ class AuthorTest < Minitest::Test
     villette = @charlotte_bronte.write("Villette", "1853")
     assert_equal [jane_eyre, villette], @charlotte_bronte.books
   end
+
+  def test_it_can_find_early_and_late_publication_dates
+    ane_eyre = @charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+    villette = @charlotte_bronte.write("Villette", "1853")
+    professor = @charlotte_bronte.write("The Professor", "1857")
+    assert_equal "1847", @charlotte_bronte.earliest_year_published
+    assert_equal "1857", @charlotte_bronte.latest_year_published
+  end
 end
