@@ -25,6 +25,7 @@ class Test < MiniTest::Test
         assert_equal "Denver Public Library", @dpl.name
         assert_equal [], @dpl.books
         assert_equal [], @dpl.authors
+        assert_equal [], @dpl.checked_out_books
     end
 
     def test_library_can_add_authors_and_update_attributes
