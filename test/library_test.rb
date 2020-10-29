@@ -51,7 +51,18 @@ class Test < Minitest::Test
     @library.add_author(@author2)
     assert_equal true, @library.checkout(@book1) #exists and is free, true case
     assert_equal false, @library.checkout(@book1) #has already been checked out
-    
+
     assert_equal true, @library.checkout(@book2) #exists and is free, true case
+  end
+
+  def test_checkout_helpers
+    assert_equal false, book_exists(@book1)
+    assert_equal true, book_is_free(@book1)
+    @library.add_author(@author1)
+    assert_equal true, book_exists(@book1)
+    assert_equal true, book_is_free(@book1)
+    @library.add_author(@book1)
+    assert_equal true, book_exists(@book1)
+    assert_equal false, book_is_free(@book1)
   end
 end
