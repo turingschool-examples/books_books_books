@@ -47,6 +47,18 @@ class LibraryTest < Minitest::Test
     assert_equal expected, dpl.publication_time_frame_for(harper_lee)
   end
 
+  def test_it_can_have_book_dates
+    dpl = Library.new("Denver Public Library")
+    charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})
+    jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+    villette = charlotte_bronte.write("Villette", "1853")
+    dpl.add_author(charlotte_bronte)
+
+    expected = ["1847", "1853"]
+
+    assert_equal expected, dpl.book_dates_for(charlotte_bronte)
+  end
+
   def test_it_can_checkout
     dpl = Library.new("Denver Public Library")
     charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})

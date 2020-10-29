@@ -19,16 +19,20 @@ class Library
   end
 
   def publication_time_frame_for(author)
-    books = @books.select do |book|
-      book.author == author.name
-    end
-    book_dates = books.map do |book|
-      book.publication_year
-    end
+    book_dates = book_dates_for(author)
     time_frame = {}
     time_frame[:start] = book_dates.min
     time_frame[:end] = book_dates.max
     time_frame
+  end
+
+  def book_dates_for(author)
+    books = @books.select do |book|
+      book.author == author.name
+    end
+    books.map do |book|
+      book.publication_year
+    end
   end
 
   def checkout(book)
