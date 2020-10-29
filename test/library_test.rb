@@ -127,13 +127,12 @@ class LibraryTest < Minitest::Test
     @dpl.add_author(charlotte_bronte)
     @dpl.add_author(harper_lee)
     
-    @dpl.checkout(jane_eyre)
-    @dpl.checkout(villette)
-    @dpl.checkout(mockingbird)
-    @dpl.return(mockingbird)
-    @dpl.checkout(mockingbird)
+    @dpl.count_checkout(jane_eyre)
+    @dpl.count_checkout(villette)
+    @dpl.count_checkout(mockingbird)
+    @dpl.count_checkout(mockingbird)
 
-    count = {:jane_eyre => 1, :villet => 1, :mockingbird => 2}
-    assert_equal count, @dpl.count_checkout
+    count = {jane_eyre => 1, villette => 1, mockingbird => 2}
+    assert_equal count, @dpl.checkouts
   end
 end
