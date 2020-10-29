@@ -51,4 +51,12 @@ class LibraryTest < Minitest::Test
     assert_equal [@jane_eyre], @dpl.checked_out_books
     assert_equal false, @dpl.checkout(@jane_eyre)
   end
+
+  def test_it_can_return_books
+    @dpl.add_author(@charlotte_bronte)
+    @dpl.add_author(@harper_lee)
+    @dpl.checkout(@jane_eyre)
+    @dpl.return(@jane_eyre)
+    assert_equal [], @dpl.checked_out_books
+  end
 end
