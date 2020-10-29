@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative '../lib/book'
-require_relative '../lib/author'
+require './lib/book'
+require './lib/author'
 
 class AuthorTest < Minitest::Test
 
@@ -10,6 +10,16 @@ class AuthorTest < Minitest::Test
 
     assert_equal "Charlotte Bronte", charlotte_bronte.name
     assert_equal [], charlotte_bronte.books
+  end
+
+  def test_it_writes_book
+    charlotte_bronte = Author.new({first_name: "Charlotte", last_name: "Bronte"})
+
+    jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+
+
+    assert_instance_of Book, jane_eyre.class
+    assert_equal "Jane Eyre", jane_eyre.title
   end
 
 end
