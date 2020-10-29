@@ -72,7 +72,7 @@ class LibraryTest < Minitest::Test
     end
 
     def test_it_can_list_checked_out_books
-        skip
+        # skip
         jane_eyre = @charlotte_bronte.write("Jane Eyre", "October 16, 1847")
         villette = @charlotte_bronte.write("Villette", "1853")
         mockingbird = @harper_lee.write("To Kill a Mockingbird", "July 11, 1960")
@@ -82,7 +82,7 @@ class LibraryTest < Minitest::Test
         @dpl.checkout(jane_eyre)
 
         assert_equal [jane_eyre], @dpl.checked_out_books
-        refute dpl.checkout(jane_eyre)
+        refute @dpl.checkout(jane_eyre)
     end
 
     def test_it_can_return_books

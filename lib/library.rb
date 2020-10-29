@@ -28,9 +28,9 @@ class Library
         frame
     end
 
-    def checkout_out_books
-        library.books.find_all do |book|
-            book.checked_out = true
+    def checked_out_books
+        @books.find_all do |book|
+            book.checked_out == true
         end
     end
 
