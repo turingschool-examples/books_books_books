@@ -57,4 +57,26 @@ class Test < MiniTest::Test
         assert_equal [@jane_eyre], @dpl.checked_out_books
         assert_equal false, @dpl.checkout(@jane_eyre)
     end
+
+    def test_library_can_return_book
+        @dpl.add_author(@charlotte_bronte)
+        @dpl.add_author(@harper_lee)
+        @dpl.checkout(@jane_eyre)
+        @dpl.return(@jane_eyre)
+
+        assert_equal [], @dpl.checked_out_books
+        assert_equal true, @dpl.checkout(@jane_eyre)
+        assert_equal [@jane_eyre], @dpl.checked_out_books
+        assert_equal true, @dpl.checkout(@villette)
+        assert_equal [@jane_eyre, @villette], @dpl.checked_out_books
+        assert_equal true, @dpl.checkout(@mockingbird)
+        
+        @dpl.return(@mockingbird)
+        
+        assert_equal true, @dpl.checkout(@mockingbird)
+
+        @dpl.return(@mockingbird)
+
+        assert_equal true, @dpl.checkout(@mockingbird)
+    end
 end
