@@ -26,4 +26,8 @@ class BookTest < Minitest::Test
    def test_we_can_combine_elements_of_hash
      assert_equal "Harper Lee", @book.author
    end
+
+   def test_publication_unit_returns_only_year
+     assert_equal "1960", @book.publication_year
+   end
 end
