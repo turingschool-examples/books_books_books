@@ -6,6 +6,7 @@ class Library
         @books = []
         @authors = []
         @checked_out_books = []
+        @popular_book_stats = {}
     end
 
     def add_author(author)
@@ -33,13 +34,33 @@ class Library
     def checkout(book)
         if can_be_checked_out?(book) == true
             @checked_out_books << book
+            update_popular_book_stats(book)
             return true 
         end
         false
     end
 
+    def update_popular_book_stats(book)
+        if @popular_book_stats[book]
+            @popular_book_stats[book] += 1
+        else
+            @popular_book_stats[book] = 1
+        end
+    end
+
     def can_be_checked_out?(book)
         @checked_out_books.include?(book) == false && @books.include?(book) == true
+    end
+
+    def return(book)
+        book_index = @checked_out_books.index(book)
+        @checked_out_books.delete_at(book_index)
+    end
+
+    def most_popular_book
+        @popular_book_stats.max_by do |book, checkouts|
+            checkouts
+        end[0]
     end
 
 end
