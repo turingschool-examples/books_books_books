@@ -13,4 +13,17 @@ class Library
     books << author.books
     books.flatten!
   end
+
+  def publication_time_frame_for(author)
+    books = @books.select do |book|
+      book.author == author.name
+    end
+    book_dates = books.map do |book|
+      book.publication_year
+    end
+    time_frame = {}
+    time_frame[:start] = book_dates.min
+    time_frame[:end] = book_dates.max
+    time_frame
+  end
 end
