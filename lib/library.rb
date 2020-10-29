@@ -45,4 +45,8 @@ class Library
     @books.include?(book) && !@checked_out_books.include?(book)
   end
 
+  def return(book)
+    @checked_out_books.delete(book)
+  end
+
 end
